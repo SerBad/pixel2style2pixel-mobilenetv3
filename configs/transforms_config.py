@@ -5,7 +5,7 @@ import sys
 sys.path.append(".")
 sys.path.append("..datasets")
 print("+++++++++++++++++++++++++",os.getcwd())
-from datasets import augmentations
+from ..datasets import augmentations
 
 class TransformsConfig(object):
 
