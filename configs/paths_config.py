@@ -5,16 +5,16 @@ dataset_paths = {
 	'celeba_test_sketch': '',
 	'celeba_train_segmentation': '',
 	'celeba_test_segmentation': '',
-	'ffhq': '/home/zhou/Documents/python/DualStyleGAN/data/head2/images/train',
+	'ffhq': '/kaggle/input/zhoudualstylegan-encode/data/head2/images/train',
 }
 
 model_paths = {
-	'stylegan_ffhq': 'pretrained_models/stylegan2-ffhq-config-f.pt',
-	'ir_se50': 'pretrained_models/model_ir_se50.pth',
-	'circular_face': 'pretrained_models/CurricularFace_Backbone.pth',
-	'mtcnn_pnet': 'pretrained_models/mtcnn/pnet.npy',
-	'mtcnn_rnet': 'pretrained_models/mtcnn/rnet.npy',
-	'mtcnn_onet': 'pretrained_models/mtcnn/onet.npy',
+	'stylegan_ffhq': '/kaggle/input/zhoudualstylegan-encode/checkpoint/stylegan2-ffhq-config-f.pt',
+	'ir_se50': '/kaggle/input/zhoudualstylegan-encode/checkpoint/model_ir_se50.pth',
+	'circular_face': '/kaggle/input/zhoudualstylegan-encode/checkpoint/CurricularFace_Backbone.pth',
+	'mtcnn_pnet': '/kaggle/input/zhoudualstylegan-encode/checkpoint/mtcnn/pnet.npy',
+	'mtcnn_rnet': '/kaggle/input/zhoudualstylegan-encode/checkpoint/mtcnn/rnet.npy',
+	'mtcnn_onet': '/kaggle/input/zhoudualstylegan-encode/checkpoint/mtcnn/onet.npy',
 	'shape_predictor': 'shape_predictor_68_face_landmarks.dat',
-	'moco': 'pretrained_models/moco_v2_800ep_pretrain.pth.tar'
+	'moco': '/kaggle/input/zhoudualstylegan-encode/checkpoint/moco_v2_800ep_pretrain.pth.tar'
 }
