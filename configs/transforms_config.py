@@ -2,7 +2,7 @@ from abc import abstractmethod
 import torchvision.transforms as transforms
 import os
 print("+++++++++++++++++++++++++",os.getcwd())
-from ..datasets import augmentations
+from kaggle.working.pixel2style2pixel-mobilenetv3.datasets import augmentations
 
 class TransformsConfig(object):
 
