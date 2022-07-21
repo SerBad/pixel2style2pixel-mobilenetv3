@@ -8,6 +8,7 @@ import pprint
 
 sys.path.append(".")
 sys.path.append("..")
+os.chdir('../')
 
 from options.train_options import TrainOptions
 from training.coach import Coach
