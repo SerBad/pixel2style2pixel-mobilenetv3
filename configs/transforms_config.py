@@ -1,11 +1,6 @@
 from abc import abstractmethod
 import torchvision.transforms as transforms
-import os
-import sys
-sys.path.append(".")
-sys.path.append("..datasets")
-print("+++++++++++++++++++++++++",os.getcwd())
-from ..datasets import augmentations
+from datasets_local import augmentations
 
 class TransformsConfig(object):
 
