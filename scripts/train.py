@@ -9,7 +9,7 @@ import pprint
 sys.path.append(".")
 sys.path.append("..")
 os.chdir('../')
-
+print(os.getcwd())
 from options.train_options import TrainOptions
 from training.coach import Coach
 import shutil
