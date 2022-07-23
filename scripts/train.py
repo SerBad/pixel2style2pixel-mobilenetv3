@@ -13,6 +13,7 @@ from options.train_options import TrainOptions
 from training.coach import Coach
 import shutil
 
+
 def main():
     opts = TrainOptions().parse()
     opts.dataset_type = "ffhq_encode"
@@ -28,6 +29,7 @@ def main():
     opts.lpips_lambda = 0.8
     opts.l2_lambda = 1
     opts.id_lambda = 0.1
+    opts.max_steps = 2000
     if os.path.exists(opts.exp_dir):
         shutil.rmtree(opts.exp_dir)
 
