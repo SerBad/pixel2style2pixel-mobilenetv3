@@ -7,6 +7,10 @@ import numpy as np
 import torch
 from PIL import Image
 from torch.utils.data import DataLoader
+import torchvision.transforms as transforms
+from torch.nn import functional as F
+from torch.utils.mobile_optimizer import optimize_for_mobile
+
 import sys
 
 sys.path.append(".")
@@ -17,11 +21,18 @@ from datasets_local.inference_dataset import InferenceDataset
 from utils.common import tensor2im, log_input_image
 from options.test_options import TestOptions
 from models.psp import pSp
+from models.encoders.psp_encoders import MobileGradualStyleEncoder
 
 
 def run():
     test_opts = TestOptions().parse()
-
+    test_opts.exp_dir = "./test_output"
+    # test_opts.checkpoint_path = "psp20220726/pixel2style2pixel-mobilenetv3/output/checkpoints/iteration_2000.pt"
+    test_opts.checkpoint_path = "best_model.pt"
+    test_opts.test_batch_size = 4
+    test_opts.test_workers = 2
+    test_opts.couple_outputs = True
+    test_opts.data_path = "/home/zhou/Documents/python/DualStyleGAN/data/head2/images/train"
     if test_opts.resize_factors is not None:
         assert len(
             test_opts.resize_factors.split(',')) == 1, "When running inference, provide a single downsampling factor!"
@@ -49,6 +60,40 @@ def run():
     net = pSp(opts)
     net.eval()
     net.cuda()
+
+    encoder = MobileGradualStyleEncoder(opts)
+    d = torch.load(test_opts.checkpoint_path, map_location='cpu')
+    d = d['state_dict']
+    name = "encoder"
+    d_filt = {k[len(name) + 1:]: v for k, v in d.items() if k[:len(name)] == name}
+    encoder.load_state_dict(d_filt, strict=True)
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
+    ])
+
+    img = Image.open("unsplash-rDEOVtE7vOs.jpg")
+    img = transform(img)
+    I = img.unsqueeze(dim=0)
+    traced_script_module_encoder = torch.jit.trace(encoder, F.adaptive_avg_pool2d(I, 256), check_trace=False)
+    traced_script_module_encoder.save("./head2-copy_model_encoder_only.jit")
+    optimized_scripted_module = optimize_for_mobile(torch.jit.load("head2-copy_model_encoder_only.jit"), backend='cpu')
+    optimized_scripted_module._save_for_lite_interpreter("head2-copy_model_encoder_only.pkl")
+    input_names = ["input"]
+    output_names = ["output"]
+    path = "./head2-copy_model_encoder_only.onnx"
+    torch.onnx.export(encoder,
+                      F.adaptive_avg_pool2d(I, 256),
+                      path,
+                      verbose=True,
+                      export_params=True,
+                      opset_version=16,
+                      do_constant_folding=True,
+                      input_names=input_names,
+                      output_names=output_names,
+                      keep_initializers_as_inputs=True)
+
+    print("save encoder jit path success ")
 
     print('Loading dataset for {}'.format(opts.dataset_type))
     dataset_args = data_configs.DATASETS[opts.dataset_type]
