@@ -27,8 +27,8 @@ from models.encoders.psp_encoders import MobileGradualStyleEncoder
 def run():
     test_opts = TestOptions().parse()
     test_opts.exp_dir = "./test_output"
-    # test_opts.checkpoint_path = "psp20220726/pixel2style2pixel-mobilenetv3/output/checkpoints/iteration_2000.pt"
-    test_opts.checkpoint_path = "best_model.pt"
+    test_opts.checkpoint_path = "psp20220728/pixel2style2pixel-mobilenetv3/output/checkpoints/iteration_25000.pt"
+    # test_opts.checkpoint_path = "best_model.pt"
     test_opts.test_batch_size = 4
     test_opts.test_workers = 2
     test_opts.couple_outputs = True
