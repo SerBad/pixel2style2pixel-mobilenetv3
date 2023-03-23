@@ -51,6 +51,7 @@ class pSp(nn.Module):
         if self.opts.checkpoint_path is not None:
             print('Loading pSp from checkpoint: {}'.format(self.opts.checkpoint_path))
             ckpt = torch.load(self.opts.checkpoint_path, map_location='cpu')
+            # print("load_weights ckpt ", ckpt)
             self.encoder.load_state_dict(get_keys(ckpt, 'encoder'), strict=True)
             self.decoder.load_state_dict(get_keys(ckpt, 'decoder'), strict=True)
             self.__load_latent_avg(ckpt)

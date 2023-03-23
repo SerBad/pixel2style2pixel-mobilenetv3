@@ -183,7 +183,7 @@ class MobileGradualStyleEncoder(Module):
         self.style_count = opts.n_styles
         self.coarse_ind = 3
         self.middle_ind = 7
-
+       # print("设置进去的style_count", self.style_count, " opts.n_styles ",opts.n_styles)
         for i in range(self.style_count):
 
             if i < self.coarse_ind:
@@ -227,5 +227,3 @@ class MobileGradualStyleEncoder(Module):
 
         out = torch.stack(latents, dim=1)
         return out
-
-
