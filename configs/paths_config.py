@@ -5,7 +5,7 @@ dataset_paths = {
 	'celeba_test_sketch': '',
 	'celeba_train_segmentation': '',
 	'celeba_test_segmentation': '',
-	'ffhq': '/kaggle/input/zhoudualstyleganencode/DualStyleGAN/data/yellow-FFHQ',
+	'ffhq': '/kaggle/input/zhoudualstylegan/DualStyleGAN/data/yellow-FFHQ',
 }
 
 model_paths = {
