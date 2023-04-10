@@ -23,6 +23,7 @@ def make_dataset(dir, exit: bool = True):
         for fname in fnames:
             if is_image_file(fname):
                 path = os.path.join(root, fname)
+                print("检查文件", os.path.getsize(path), path)
                 if os.path.getsize(path) > 0 or exit:
                     images.append(path)
     return images
