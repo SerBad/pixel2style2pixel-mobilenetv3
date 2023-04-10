@@ -14,7 +14,7 @@ def is_image_file(filename):
     return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
 
-def make_dataset(dir):
+def make_dataset(dir, exit: bool = True):
     images = []
     if not os.path.exists(dir):
         os.makedirs(dir)
@@ -23,6 +23,6 @@ def make_dataset(dir):
         for fname in fnames:
             if is_image_file(fname):
                 path = os.path.join(root, fname)
-                if os.path.getsize(path) > 0:
+                if os.path.getsize(path) > 0 or exit:
                     images.append(path)
     return images
