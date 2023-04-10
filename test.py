@@ -9,4 +9,4 @@ from_im = Image.open("/kaggle/input/zhoudualstylegan/DualStyleGAN/data/yellow-FF
 print(from_im.getbands(), len(from_im.getbands()))
 from_im = from_im.convert('RGB')
 print(from_im.getbands(), len(from_im.getbands()))
-from_im.show()
+# from_im.show()
