@@ -17,6 +17,9 @@ from datasets_local.images_dataset import ImagesDataset
 from criteria.lpips.lpips import LPIPS
 from models.psp import pSp
 from training.ranger import Ranger
+from PIL import Image
+
+Image.LOAD_TRUNCATED_IMAGES = True
 
 
 class Coach:
