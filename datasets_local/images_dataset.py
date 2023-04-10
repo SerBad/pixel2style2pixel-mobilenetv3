@@ -8,6 +8,8 @@ class ImagesDataset(Dataset):
     def __init__(self, source_root, target_root, opts, target_transform=None, source_transform=None):
         self.source_paths = sorted(data_utils.make_dataset(source_root, exit=False))
         self.target_paths = sorted(data_utils.make_dataset(target_root))
+        print("初始化source_paths", len(self.source_paths), " target_paths ", len(self.target_paths), "source_root",
+              source_root, "target_root", target_root)
         self.source_transform = source_transform
         self.target_transform = target_transform
         self.opts = opts
