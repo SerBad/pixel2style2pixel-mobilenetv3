@@ -20,7 +20,7 @@ class ImagesDataset(Dataset):
 
     def __getitem__(self, index):
         from_path = self.source_paths[index]
-        # print("开始加载", index, len(self.target_paths), " == ", from_path)
+        print("开始加载", index, len(self.target_paths), " == ", from_path)
         from_im = Image.open(from_path)
         from_im = from_im.convert('RGB') if self.opts.label_nc == 0 else from_im.convert('L')
 
