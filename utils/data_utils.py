@@ -23,5 +23,6 @@ def make_dataset(dir):
         for fname in fnames:
             if is_image_file(fname):
                 path = os.path.join(root, fname)
-                images.append(path)
+                if os.path.getsize(path) > 0:
+                    images.append(path)
     return images
