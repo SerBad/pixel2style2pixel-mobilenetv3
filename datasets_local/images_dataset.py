@@ -19,11 +19,12 @@ class ImagesDataset(Dataset):
 
     def __getitem__(self, index):
         from_path = self.source_paths[index]
-        print("开始加载", index, self.target_paths, " == ", from_path)
+        print("开始加载", index, len(self.target_paths), " == ", from_path)
         from_im = Image.open(from_path)
         from_im = from_im.convert('RGB') if self.opts.label_nc == 0 else from_im.convert('L')
 
         to_path = self.target_paths[index]
+        print("to_path", to_path)
         to_im = Image.open(to_path).convert('RGB')
         if self.target_transform:
             to_im = self.target_transform(to_im)
