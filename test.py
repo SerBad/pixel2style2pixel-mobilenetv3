@@ -1,6 +1,11 @@
 from PIL import Image
+import os
 
-# from_im = Image.open("/home/zhou/Downloads/黄种人-FFHQ/63323.png")
-from_im = Image.open("/kaggle/input/zhoudualstylegan/DualStyleGAN/data/yellow-FFHQ/33677.png", mode="r")
-from_im = Image.open("/kaggle/input/zhoudualstylegan/DualStyleGAN/data/yellow-FFHQ/63323.png", mode="r")
+#
+# print(os.path.getsize("s.png"))
+
+# from_im = Image.open("/home/zhou/Downloads/黄种人-FFHQ/55057.png")
+from_im = Image.open("/kaggle/input/zhoudualstylegan/DualStyleGAN/data/yellow-FFHQ/55057.png")
+print(from_im.getbands(), len(from_im.getbands()))
+from_im = from_im.convert('RGB')
 from_im.show()
