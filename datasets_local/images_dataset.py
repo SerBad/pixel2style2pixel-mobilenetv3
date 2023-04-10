@@ -1,7 +1,8 @@
 from torch.utils.data import Dataset
-from PIL import Image
+from PIL import Image, ImageFile
 from utils import data_utils
-Image.LOAD_TRUNCATED_IMAGES = True
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 class ImagesDataset(Dataset):
